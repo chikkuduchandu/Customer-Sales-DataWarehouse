@@ -156,6 +156,7 @@ CREATE SCHEMA gold;
 
 ---
 
+
 ### 3️⃣ Load Data  
 Import all CSVs into the **Bronze** layer tables.  
 Use SQL Server Import Wizard or BULK INSERT commands.  
