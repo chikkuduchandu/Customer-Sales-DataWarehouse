@@ -45,8 +45,8 @@ The **Gold Layer** follows a **Star Schema**, consisting of:
 **Relationships:**  
 - Each sale links to a customer and product using surrogate keys.  
 
-📸 **Add this image below:**  
-![Data Model](docs/data_model.png)
+<img width="1500" height="549" alt="data_model" src="https://github.com/user-attachments/assets/2be33845-4ab3-4a0b-99d8-b50502c72569" />
+
 
 ---
 
@@ -124,8 +124,6 @@ The Power BI report visualizes key business metrics and insights from the **Gold
 - Dynamic slicers automatically update KPIs and charts  
 - Drill-down and sorting enabled for deeper analysis  
 
-📸 **Optional:** Add a screenshot of your dashboard below.  
-![Power BI Dashboard](docs/powerbi_dashboard.png)
 
 ---
 
@@ -143,6 +141,67 @@ The Power BI report visualizes key business metrics and insights from the **Gold
 
 ## 🚀 Project Setup  
 
-1. **Create the Database**
-   ```sql
-   CREATE DATABASE DataWarehouse;
+### 1️⃣ Create the Database  
+```sql
+CREATE DATABASE DataWarehouse;
+```
+
+---
+
+### 2️⃣ Create Schemas  
+```sql
+CREATE SCHEMA bronze;
+CREATE SCHEMA silver;
+CREATE SCHEMA gold;
+
+---
+
+### 3️⃣ Load Data  
+Import all CSVs into the **Bronze** layer tables.  
+Use SQL Server Import Wizard or BULK INSERT commands.  
+
+
+---
+
+### 4️⃣ Run Transformation Scripts  
+Execute SQL scripts to populate **Silver** and **Gold** layers.  
+
+Example:
+```sql
+INSERT INTO silver.customers
+SELECT DISTINCT * FROM bronze.customers_raw;
+
+INSERT INTO gold.fact_sales
+SELECT * 
+FROM silver.sales s
+JOIN silver.customers c ON s.customer_id = c.customer_id;
+
+---
+
+### 5️⃣ Connect Power BI  
+1. Open **Power BI Desktop**  
+2. Select **SQL Server Database** as your data source  
+3. Import the following tables:
+   - `gold.fact_sales`  
+   - `gold.dim_customers`  
+   - `gold.dim_products`  
+
+<img width="1134" height="641" alt="Screenshot 2025-10-25 211715" src="https://github.com/user-attachments/assets/0901a763-e5c3-4333-9472-d65e9d8508bf" />
+
+---
+
+## 📈 Key Learnings  
+- Data ingestion and ETL automation in SQL Server  
+- Building a multi-layered data warehouse (Bronze → Silver → Gold)  
+- Star schema modeling for analytical performance  
+- Creating Power BI dashboards for executive insights  
+
+---
+
+## 👨‍💻 Author  
+**Chandu Chikkudu**  
+*Data Enthusiast | SQL | Power BI | Python*  
+📍 MGIT  
+🔗 GitHub: [@chikkuduchandu](https://github.com/chikkuduchandu)
+
+
