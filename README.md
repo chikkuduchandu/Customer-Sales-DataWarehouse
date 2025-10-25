@@ -177,7 +177,7 @@ INSERT INTO gold.fact_sales
 SELECT * 
 FROM silver.sales s
 JOIN silver.customers c ON s.customer_id = c.customer_id;
-
+```
 ---
 
 ### 5️⃣ Connect Power BI  
